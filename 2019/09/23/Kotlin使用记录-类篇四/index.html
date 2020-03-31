@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Kotlin使用记录-类篇 - null
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/2019/09/23/Kotlin使用记录-类篇四/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                            
+                              <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                            
+                        </div>
+                        <h1>Kotlin使用记录-类篇</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 小诸侯 on
+                            2019-09-23
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu1</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu2</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu5</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>本篇是Kotlin类使用指南的最后一篇，本篇主要介绍的是Kotlin类中的高级用法。</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>Kotlin 能够扩展一个类的新功能而无需继承该类或者使用像装饰者这样的设计模式。 这通过叫做 扩展 的特殊声明完成。</p>
+<p>声明一个扩展函数，我们需要用一个 接收者类型 也就是被扩展的类型来作为他的前缀。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> MutableList<span class="type">&lt;Int&gt;</span>.<span class="title">swap</span><span class="params">(index1: <span class="type">Int</span>, index2: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> tmp = <span class="keyword">this</span>[index1] <span class="comment">// “this”对应该列表</span></span><br><span class="line">    <span class="keyword">this</span>[index1] = <span class="keyword">this</span>[index2]</span><br><span class="line">    <span class="keyword">this</span>[index2] = tmp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码就是为MutableList&lt;Int&gt;添加了一个swap方法，函数体中的this的类型对应的就是接受拓展的函数的类型。泛型是可以正常使用的。</p>
+<p>我们看一下上面代码最后生成的java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(@NotNull List $<span class="keyword">this</span>$swap, <span class="keyword">int</span> index1, <span class="keyword">int</span> index2)</span> </span>&#123;</span><br><span class="line">    Intrinsics.checkParameterIsNotNull($<span class="keyword">this</span>$swap, <span class="string">"$this$swap"</span>);</span><br><span class="line">    <span class="keyword">int</span> tmp = ((Number) $<span class="keyword">this</span>$swap.get(index1)).intValue();</span><br><span class="line">    $<span class="keyword">this</span>$swap.set(index1, $<span class="keyword">this</span>$swap.get(index2));</span><br><span class="line">    $<span class="keyword">this</span>$swap.set(index2, Integer.valueOf(tmp));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="需要注意"><a href="#需要注意" class="headerlink" title="需要注意"></a>需要注意</h4><ul>
+<li>通过java的源代码我们知道，扩展的本质其实是静态方法，因为扩展并没有继承，所以扩展使用时只能通过纸面上的方法以及类名来进行匹配，而非运行时真实的对象。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>: <span class="type">Shape</span></span>()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> Shape.<span class="title">getName</span><span class="params">()</span></span> = <span class="string">"Shape"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> Rectangle.<span class="title">getName</span><span class="params">()</span></span> = <span class="string">"Rectangle"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printClassName</span><span class="params">(s: <span class="type">Shape</span>)</span></span> &#123;</span><br><span class="line">    println(s.getName())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printClassName(Rectangle())</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中输出的是Shape</p>
+<ul>
+<li><p>当成员函数与扩展函数冲突时使用成员函数</p>
+</li>
+<li><p>可以为可空对象添加方法，该方法同样可以在非可空对象上使用，即为Any?添加的方法Any同样可以使用。</p>
+</li>
+<li><p>可以对伴生对象(companion)进行扩展</p>
+</li>
+<li><p>可以对属性进行扩展，但是由于扩展时并没有真正的将改属性插入到类中，所以不能使用幕后属性，也就是不能使用构造器，所以扩展属性必须要自己实现get方法</p>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> &lt;T&gt; List&lt;T&gt;.lastIndex: <span class="built_in">Int</span></span><br><span class="line">    <span class="keyword">get</span>() = size - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="扩展声明为成员"><a href="#扩展声明为成员" class="headerlink" title="扩展声明为成员"></a>扩展声明为成员</h4><p>我们还可以在一个类中扩展类外一个类。这样的话在该扩展方法中既可以使用被扩展类中的属性和方法，也可以使用包含该方法的类中的属性和方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Host</span></span>(<span class="keyword">val</span> hostname: String) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printHostname</span><span class="params">()</span></span> &#123; print(hostname) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Connection</span></span>(<span class="keyword">val</span> host: Host, <span class="keyword">val</span> port: <span class="built_in">Int</span>) &#123;</span><br><span class="line">     <span class="function"><span class="keyword">fun</span> <span class="title">printPort</span><span class="params">()</span></span> &#123; print(port) &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">fun</span> Host.<span class="title">printConnectionString</span><span class="params">(p: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">         printHostname()   <span class="comment">// calls Host.printHostname()</span></span><br><span class="line">         print(<span class="string">":"</span>)</span><br><span class="line">         printPort()   <span class="comment">// calls Connection.printPort()</span></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">fun</span> <span class="title">connect</span><span class="params">()</span></span> &#123;</span><br><span class="line">         <span class="comment">/*……*/</span></span><br><span class="line">         host.printConnectionString(port)   <span class="comment">// calls the extension function</span></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">fun</span> Host.<span class="title">getConnectionString</span><span class="params">()</span></span> &#123;</span><br><span class="line">        toString()         <span class="comment">// 调用 Host.toString()</span></span><br><span class="line">        <span class="keyword">this</span><span class="symbol">@Connection</span>.toString()  <span class="comment">// 调用 Connection.toString()</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    Connection(Host(<span class="string">"kotl.in"</span>), <span class="number">443</span>).connect()</span><br><span class="line">    <span class="comment">//Host("kotl.in").printConnectionString(443)  // error, the extension function is unavailable outside Connection</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果两个类中的属性和方法冲突，默认使用宿主类中的方法，可以使this加标签的方法指定使用哪个类中的属性和方法.</p>
+<p>另外扩展函数和普通函数一样可以声明为open。</p>
+<h3 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h3><h4 id="类的委托"><a href="#类的委托" class="headerlink" title="类的委托"></a>类的委托</h4><p>委托顾名思义就是java中的委托模式，委托模式是很常用的一种设计模式，用java实现的话需要写很多样板代码，kotlin中我们只需要用关键字by就可以很方便的实现委托模式</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseImpl</span></span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>) : Base &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span> &#123; print(x) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(b: Base) : Base <span class="keyword">by</span> b</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> b = BaseImpl(<span class="number">10</span>)</span><br><span class="line">    Derived(b).print()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，以这种方式重写的成员不会在委托对象的成员中调用 ，委托对象的成员只能访问其自身对接口成员实现：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> message: String</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseImpl</span></span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>) : Base &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> message = <span class="string">"BaseImpl: x = <span class="variable">$x</span>"</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span> &#123; println(message) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(b: Base) : Base <span class="keyword">by</span> b &#123;</span><br><span class="line">    <span class="comment">// 在 b 的 `print` 实现中不会访问到这个属性</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> message = <span class="string">"Message of Derived"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> b = BaseImpl(<span class="number">10</span>)</span><br><span class="line">    <span class="keyword">val</span> derived = Derived(b)</span><br><span class="line">    derived.print()</span><br><span class="line">    println(derived.message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="属性委托"><a href="#属性委托" class="headerlink" title="属性委托"></a>属性委托</h4><p>Kotlin中不光类可以委托，属性同样可以为委托，如果有些类的属性，拥有相同的特性，可以为他们统一写一个委托。委托方法如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p: String <span class="keyword">by</span> Delegate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Delegate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"<span class="variable">$thisRef</span>, thank you for delegating '<span class="subst">$&#123;property.name&#125;</span>' to me!"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">"<span class="variable">$value</span> has been assigned to '<span class="subst">$&#123;property.name&#125;</span>' in <span class="variable">$thisRef</span>."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义代理时，如果被代理的是val则至少需要提供一个getValue方法，如果var的话还要多提供一个setValue方法<br>方法中thisRef表示属性所在类的引用，property包含一些被代理属性的信息，get方法返回值类型必须是属性的类型或者其子类型，set方法中value的类型也是。</p>
+<p>Kotlin为我们提供了标注的实现自定义代理的接口</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ReadOnlyProperty</span>&lt;<span class="type">in R, out T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">R</span>, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ReadWriteProperty</span>&lt;<span class="type">in R, T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">R</span>, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">R</span>, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">T</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然就算不继承接口直接来实现getValue和setValue，就像我们例子中的写法也是可以。</p>
+<p>系统在实现时会为我们代理的属性添加一个隐藏的属性，具体的实现如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> prop: Type <span class="keyword">by</span> MyDelegate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这段是由编译器生成的相应代码：</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> prop$delegate = MyDelegate()</span><br><span class="line">    <span class="keyword">var</span> prop: Type</span><br><span class="line">        <span class="keyword">get</span>() = prop$delegate.getValue(<span class="keyword">this</span>, <span class="keyword">this</span>::prop)</span><br><span class="line">        <span class="keyword">set</span>(value: Type) = prop$delegate.setValue(<span class="keyword">this</span>, <span class="keyword">this</span>::prop, value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时系统也为我们提供了一些常用的代理实现</p>
+<ol>
+<li>lazy：懒加载</li>
+<li>Observable：可观察,接受两个参数：初始值与修改时处理程序（handler）。 每当我们给属性赋值时会调用该处理程序（在赋值后执行）。它有三个参数：被赋值的属性、旧值与新值。</li>
+<li>map: 将属性映射到map中，val使用Map，var使用MutableMap</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> lazyValue: String <span class="keyword">by</span> lazy &#123;</span><br><span class="line">    println(<span class="string">"computed!"</span>)</span><br><span class="line">    <span class="string">"Hello"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.observable(<span class="string">"&lt;no name&gt;"</span>) &#123;</span><br><span class="line">        prop, old, new -&gt;</span><br><span class="line">        println(<span class="string">"<span class="variable">$old</span> -&gt; <span class="variable">$new</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> map: Map&lt;String, Any?&gt;) &#123;</span><br><span class="line">    <span class="keyword">val</span> name: String <span class="keyword">by</span> map</span><br><span class="line">    <span class="keyword">val</span> age: <span class="built_in">Int</span>     <span class="keyword">by</span> map</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>局部委托属性：在方法中局部变量也可以使用委托</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">example</span><span class="params">(computeFoo: ()</span></span> -&gt; Foo) &#123;</span><br><span class="line">    <span class="keyword">val</span> memoizedFoo <span class="keyword">by</span> lazy(computeFoo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (someCondition &amp;&amp; memoizedFoo.isValid()) &#123;</span><br><span class="line">        memoizedFoo.doSomething()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Kotlin同样提供了provideDelegate操作符来标识代理</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResourceLoader</span>&lt;<span class="type">T</span>&gt;</span>(id: ResourceID&lt;T&gt;) &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">provideDelegate</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            thisRef: <span class="type">MyUI</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">            prop: <span class="type">KProperty</span>&lt;*&gt;</span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span>: ReadOnlyProperty&lt;MyUI, T&gt; &#123;</span><br><span class="line">        checkProperty(thisRef, prop.name)</span><br><span class="line">        <span class="comment">// 创建委托</span></span><br><span class="line">        <span class="keyword">return</span> ResourceDelegate()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">checkProperty</span><span class="params">(thisRef: <span class="type">MyUI</span>, name: <span class="type">String</span>)</span></span> &#123; …… &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">bindResource</span><span class="params">(id: <span class="type">ResourceID</span>&lt;<span class="type">T</span>&gt;)</span></span>: ResourceLoader&lt;T&gt; &#123; …… &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> image <span class="keyword">by</span> bindResource(ResourceID.image_id)</span><br><span class="line">    <span class="keyword">val</span> text <span class="keyword">by</span> bindResource(ResourceID.text_id)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只需要在类中添加该操作符就可使用该来来实现委托，主要用来完成一系列相同委托的封装</p>
+<hr>
+<p>Kotlin中的类到此就介绍完了，将来会陆续整理Kotlin中其他的部分，喜欢的朋友可以关注我的公众号，会经常发布一些技术文档，扫描下方二维码关注欧。</p>
+<p><img src="https://zj8331182.github.io/image/qrcode_for_gh_fc9f7b133c7f_430.jpg" alt="二维码"></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/03/30/Kotlin使用记录-方法篇一/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-方法篇一">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/09/20/Kotlin使用记录-类篇三/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-类篇">Next post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                          <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/2019/09/23/Kotlin使用记录-类篇四/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

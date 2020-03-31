@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Kotlin使用记录-基本篇一 - null
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/2019/09/13/Kotlin使用记录-基础篇一/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                            
+                              <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                            
+                        </div>
+                        <h1>Kotlin使用记录-基本篇一</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 小诸侯 on
+                            2019-09-13
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu1</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu2</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu5</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2019年的Google开发者大会刚刚开完，作为早就被Google确认为官方开发语言的kotlin终于实现了超50%的开发使用量，可以说是可喜可贺。作为一名从java转移到kotlin的开发，这里就总结一下自己学习kotlin时一些心得。</p>
+<ol>
+<li><p>变量：<br>首先kotin中变量的生命的格式如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>/<span class="keyword">val</span> 变量名：变量类型</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<p>   基本的元素包含是变量还是常量，以及变量名。如果声明时带有赋值的话，后面的变量类型可以省略，kotlin会根据赋值自动推算出类型。</p>
+<ol start="2">
+<li><p>类型：</p>
+<ul>
+<li><p>Kotlin中多有的东西都是对象，那你可能就会想，是不是也就不会有java中的基本类型（int）和包装类型（Integer）的区分？</p>
+<p> 其实在kotlin中还是有的，当声明为可空类型的时候kotlin就会产生一个包装类型的数据，也就是说Int？就相当于Integer</p>
+<p> 这里要注意的地方是</p>
+<ol>
+<li><p>对于同一个基本类型的变量进行装包之后的装包类型不相同,即</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a: <span class="built_in">Int</span> = <span class="number">10000</span></span><br><span class="line"><span class="keyword">val</span> boxedA: <span class="built_in">Int</span>? = a</span><br><span class="line"><span class="keyword">val</span> anotherBoxedA: <span class="built_in">Int</span>? = a</span><br><span class="line">boxedA !== anotherBoxedA</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>2. 对于同一个基本类型的变量进行装包之后的装包类型的值相同,即
+
+   <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a: <span class="built_in">Int</span> = <span class="number">10000</span></span><br><span class="line"><span class="keyword">val</span> boxedA: <span class="built_in">Int</span>? = a</span><br><span class="line"><span class="keyword">val</span> anotherBoxedA: <span class="built_in">Int</span>? = a</span><br><span class="line">boxedA == anotherBoxedA</span><br></pre></td></tr></table></figure></code></pre><ul>
+<li><p>Kotlin 中的数字没有隐式拓宽转换,下面的例子在Java上是没有问题的，但是在Kotlin中是不允许的,因为方法的入参类型为Long，Kotlin不会自动将Int转换为Long。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> test1 = <span class="number">2</span>;</span><br><span class="line">    test(test1);</span><br><span class="line">&#125;</span><br><span class="line">     </span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">long</span> i)</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<pre><code> 同样的Long型的变量不能使用Int型的赋值方法，下面的代码在Kotlin中也是不允许的。
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> testI: <span class="built_in">Int</span> =<span class="number">2</span></span><br><span class="line"><span class="keyword">var</span> testL: <span class="built_in">Long</span> = testI</span><br></pre></td></tr></table></figure>
+
+
+ 这里有一点需要注意的是虽然Long和Int的有上边的限制不能互相隐式拓宽但是下面的代码是被允许的，Kotlin会重载运算符，帮助我们实现转换，所以我们日常写代码的时候其实不太会关心这个没有隐式转换的问题
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> testI: <span class="built_in">Int</span> = <span class="number">200</span></span><br><span class="line"><span class="keyword">var</span> testL: <span class="built_in">Long</span> = <span class="number">200L</span></span><br><span class="line"><span class="keyword">val</span> result = testI + testL</span><br></pre></td></tr></table></figure></code></pre><ul>
+<li><p>Kotlin中各个类型的基本信息</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小（比特数）</th>
+<th>最小值</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Byte</td>
+<td>8</td>
+<td>-128</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Short</td>
+<td>16</td>
+<td>-32768</td>
+<td>32767</td>
+</tr>
+<tr>
+<td>Int</td>
+<td>32</td>
+<td>-2,147,483,648 (-2<sup>31</sup>)</td>
+<td>2,147,483,647 (2<sup>31</sup> - 1)</td>
+</tr>
+<tr>
+<td>Long</td>
+<td>64</td>
+<td>-9,223,372,036,854,775,808 (-2<sup>63</sup>)</td>
+<td>9,223,372,036,854,775,807 (2<sup>63</sup> - 1)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小（比特数）</th>
+<th>有效数字比特数</th>
+<th>指数比特数</th>
+<th>十进制位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Float</td>
+<td>32</td>
+<td>24</td>
+<td>8</td>
+<td>6-7</td>
+</tr>
+<tr>
+<td>Double</td>
+<td>64</td>
+<td>53</td>
+<td>11</td>
+<td>15-16</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<ol start="3">
+<li><p>运算符</p>
+<p>运算符Kotlin与java的差异并不大，需要注意的有以下几点</p>
+<ul>
+<li><p>Kotlin中运算符被看做是类的一部分，也就是说运算符是可以被重载的，当然，你也可以为你自己编写的类添加运算符，这个我们之后会讲</p>
+</li>
+<li><p>Kotlin中位运算的运算符与java不同，具体的对应关系我这就不赘述了，网上查得到</p>
+</li>
+<li><p>Kotlin中没有三元运算符？用下面的代码可以起到一样的作用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> c = <span class="keyword">if</span> (a &gt; b) a <span class="keyword">else</span> b</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>Kotlin中特有的运算符：</p>
+<p>   ..:区间运算符1..6表示一个包含[1,2,3,4,5,6]的List<br>   in:相当于于Java中List的contains<br>   is:相当于Java中instance of</p>
+</li>
+</ul>
+<p>基础部分就先整理到这里，将来会陆续整理Kotlin中其他的部分，喜欢的朋友可以关注我的公众号，会经常发布一些技术文档，扫描下方二维码关注欧。</p>
+<img src="/image/qrcode_for_gh_fc9f7b133c7f_430.jpg" title="二维码">
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/09/13/Kotlin使用记录-类篇一/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-类篇一">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/07/01/MPAndroidChart使用记录/" data-toggle="tooltip" data-placement="top" title="MPAndroidChart使用记录">Next post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                          <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/2019/09/13/Kotlin使用记录-基础篇一/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

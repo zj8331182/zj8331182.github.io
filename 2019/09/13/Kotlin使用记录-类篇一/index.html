@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Kotlin使用记录-类篇一 - null
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/2019/09/13/Kotlin使用记录-类篇一/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                            
+                              <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                            
+                        </div>
+                        <h1>Kotlin使用记录-类篇一</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 小诸侯 on
+                            2019-09-13
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu1</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu2</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu5</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Kotlin中的类"><a href="#Kotlin中的类" class="headerlink" title="Kotlin中的类"></a>Kotlin中的类</h2><p>kotlin类的关键字一样是class<br>一个最简单的类就是</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br></pre></td></tr></table></figure>
+
+<p>那么我将从以下几个方向介绍java与kotlin走不同的地方</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>Kotlin中构造函数有两个，分别为主构造函数,次构造函数</p>
+<h4 id="主构造函数"><a href="#主构造函数" class="headerlink" title="主构造函数"></a>主构造函数</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">constructor</span></span>(firstName: String) &#123; <span class="comment">/*……*/</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果主构造函数没有任何注解或者可见性修饰符，constructor关键字可以省略，一定要注意的是只有在主构造函数没有任何注解或者可见性修饰符才可以省略，有过有的话，要写在constructor前面  </p>
+<p>这里的主构造函数不能添加任何代码，只能声明入参，如果需要在构造函数中使用代码，可以在init{}代码块中添加代码，如下。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InitOrderDemo</span></span>(name: String) &#123;</span><br><span class="line">    <span class="keyword">val</span> firstProperty = <span class="string">"First property: <span class="variable">$name</span>"</span>.also(::println)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">"First initializer block that prints <span class="subst">$&#123;name&#125;</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> secondProperty = <span class="string">"Second property: <span class="subst">$&#123;name.length&#125;</span>"</span>.also(::println)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">"Second initializer block that prints <span class="subst">$&#123;name.length&#125;</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码的运行结果为：<br>    First property: hello<br>    First initializer block that prints hello<br>    Second property: 5<br>    Second initializer block that prints 5<br>    可见init{}代码块和变量的初始化时按顺序进行的  </p>
+<p>但是其实我们的成员变量也是可以在主构造函数中声明的如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(firstName: String, lastName: String, <span class="keyword">var</span> age: <span class="built_in">Int</span>, <span class="keyword">val</span> name:String = firstName + lastName) &#123; <span class="comment">/*……*/</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码中age和name为成员变量，而firstName和secondName则只能在初始化函数中使用，并不能在类的其他地方使用。<br><strong>注意</strong></p>
+<ol>
+<li><p>这里说的初始化函数不止是主构造函数，init{}代码块以及成员变量的初始化函数中都可以使用</p>
+</li>
+<li><p>如果成员变量没有默认值，那么创建该类的对象时，必须要传入初始值</p>
+</li>
+</ol>
+<h4 id="次构造函数"><a href="#次构造函数" class="headerlink" title="次构造函数"></a>次构造函数</h4><p>类也可以声明前缀有 constructor的次构造函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name: String) &#123;</span><br><span class="line">    <span class="keyword">var</span> children: MutableList&lt;Person&gt; = mutableListOf&lt;Person&gt;();</span><br><span class="line">    <span class="keyword">constructor</span>(name: String, parent: Person) : <span class="keyword">this</span>(name) &#123;</span><br><span class="line">        parent.children.add(<span class="keyword">this</span>)</span><br><span class="line">        println(<span class="string">"Constructor"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span>&#123;</span><br><span class="line">        println(<span class="string">"Init block"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的有：</p>
+<ol>
+<li><p>如果类有一个主构造函数，每个次构造函数需要委托给主构造函数， 可以直接委托或者通过别的次构造函数间接委托。委托到同一个类的另一个构造函数用 this 关键字即可。</p>
+</li>
+<li><p>初始化块中的代码实际上会成为主构造函数的一部分。委托给主构造函数会作为次构造函数的第一条语句，因此所有初始化块中的代码都会在次构造函数体之前执行。也就是说上面的代码会先打印“Init block”之后打印“Constructor”</p>
+</li>
+<li><p>如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的不带参数的主构造函数。构造函数的可见性是 public。</p>
+</li>
+</ol>
+<h3 id="类的创建"><a href="#类的创建" class="headerlink" title="类的创建"></a>类的创建</h3><p>Kotlin中没有关键字new，创建对象只需要调用构造方法就可以</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><p>Kotlin中的class默认是final的，也就是不可被继承的，如果想要声明一个可被继承的超类，需要在class前添加关键字open，同样的类中的属性（包括成员变量和方法）同样是默认final的，如果可被继承需要添加open</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span></span>(p: <span class="built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(p: <span class="built_in">Int</span>) : Base(p)</span><br></pre></td></tr></table></figure>
+
+<h4 id="构造函数覆盖"><a href="#构造函数覆盖" class="headerlink" title="构造函数覆盖"></a>构造函数覆盖</h4><p>如果派生类有一个主构造函数，其基类型可以（并且必须） 用基类的主构造函数参数就地初始化。</p>
+<p>如果派生类没有主构造函数，那么每个次构造函数必须使用 super 关键字初始化其基类型，或委托给另一个构造函数做到这一点。 注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数，让我们一起看一下下面的例子</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>(<span class="keyword">val</span> name:String)&#123;</span><br><span class="line">    <span class="keyword">var</span> age:<span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">constructor</span>(name:String, age:<span class="built_in">Int</span>):<span class="keyword">this</span>(name)&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>(name :String,age:<span class="built_in">Int</span>):A(name)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name:String,age:<span class="built_in">Int</span>,height:<span class="built_in">Int</span>):<span class="keyword">this</span>(name, age)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:<span class="type">A&#123;</span></span></span><br><span class="line">    <span class="keyword">constructor</span>(name:String):<span class="keyword">super</span>(name)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name:String,age:<span class="built_in">Int</span>):<span class="keyword">super</span>(name, age)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>子类必须覆盖父类的主构造函数，次构造函数必须覆盖主构造函数。</li>
+<li>子类如果有主构造函数，必须在主构造函数中包含父类的主构造函数。</li>
+<li>子类如果没有主构造函数必须在次构造函数中覆盖父类的主构造函数，使用super来调用父类的构造函数。</li>
+<li>子类中重载实现多个父类的构造函数。</li>
+<li>子类中如果有主构造函数，那么次构造函数不可以使用super。</li>
+<li>次构造函数和主构造函数的参数表不能相同（构造函数其实就是和类名一个名字的方法，参数表不能相同是基本概念）</li>
+</ol>
+<h4 id="属性覆盖"><a href="#属性覆盖" class="headerlink" title="属性覆盖"></a>属性覆盖</h4><p><strong>我们这里说的属性包括成员变量和方法，由于这部分二者基本没有区别，就放到一起讲了。</strong></p>
+<ul>
+<li>之前我们讲到kotlin中属性默认是final的，如果希望属性可以被重写那么需要在声明时前面加open。</li>
+<li>那子类重写属性时需要在声明前加override关键字，表示要重写同名的属性。</li>
+<li>如果使用了同名的属性，但是没有在父类中加open或者没有在子类中加override的话都是会报错的欧。</li>
+<li>如果子类中重写了某个属性后不希望子类的子类再去重写的话可以再使用final修饰该属性。</li>
+<li>如果父类的属性是val子类可以使用var覆盖，但是如果父类是var子类<strong>不允许</strong>使用val覆盖</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">open</span> <span class="keyword">val</span> value:String = <span class="string">"A"</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span>:<span class="type">A</span></span>()&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="keyword">override</span> <span class="keyword">var</span> value = <span class="string">"B"</span><span class="comment">//不可被重写</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:<span class="type">B</span></span>()&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="初始化顺序"><a href="#初始化顺序" class="headerlink" title="初始化顺序"></a>初始化顺序</h4><p>我们先看一下，下面的代码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> a = C(age =  <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>(<span class="keyword">val</span> name:String = <span class="string">"abc"</span>.also &#123; println(<span class="string">"A constructor"</span>) &#125;)&#123;</span><br><span class="line">    <span class="keyword">var</span> age:<span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">init</span>&#123;</span><br><span class="line">        println(<span class="string">"A init"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">constructor</span>(age:<span class="built_in">Int</span>):<span class="keyword">this</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age</span><br><span class="line">        println(<span class="string">"A primtry constructor"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:<span class="type">A&#123;</span></span></span><br><span class="line">    <span class="keyword">init</span>&#123;</span><br><span class="line">        println(<span class="string">"C init"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(age:<span class="built_in">Int</span>):<span class="keyword">super</span>(age)&#123;</span><br><span class="line">        println(<span class="string">"C primtry constructor"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：<br>A constructor<br>A init<br>A primtry constructor<br>C init<br>C primtry constructor<br>这意味着，基类构造函数执行时，派生类中声明或覆盖的属性都还没有初始化。如果在基类初始化逻辑中（直接或通过另一个覆盖的 open 成员的实现间接）使用了任何一个这种属性，那么都可能导致不正确的行为或运行时故障。设计一个基类时，应该避免在构造函数、属性初始化器以及 init 块中使用 open 成员。</p>
+<h4 id="调用父类"><a href="#调用父类" class="headerlink" title="调用父类"></a>调用父类</h4><p>与java一样kotlin可以使用super来调用父类中可调用的方法或属性</p>
+<ul>
+<li>如果是内部类想调用外部类的父类中的属性或方法时可以使用我们之前讲过的标签如下</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FilledRectangle</span>: <span class="type">Rectangle</span></span>() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123; <span class="comment">/* …… */</span> &#125;</span><br><span class="line">    <span class="keyword">val</span> borderColor: String <span class="keyword">get</span>() = <span class="string">"black"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">Filler</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">fill</span><span class="params">()</span></span> &#123; <span class="comment">/* …… */</span> &#125;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">drawAndFill</span><span class="params">()</span></span> &#123;</span><br><span class="line">            <span class="symbol">super@</span>FilledRectangle.draw() <span class="comment">// 调用 Rectangle 的 draw() 实现</span></span><br><span class="line">            fill()</span><br><span class="line">            println(<span class="string">"Drawn a filled rectangle with color <span class="subst">$&#123;super@FilledRectangle.borderColor&#125;</span>"</span>) <span class="comment">// 使用 Rectangle 所实现的 borderColor 的 get()</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果一个同时继承多个接口或者类，且超类中存在同名函数或者属性，那么系统会要求我们必须重写该方法或属性，并且在实现中可以用下面的方式</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123; <span class="comment">/* …… */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Polygon</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123; <span class="comment">/* …… */</span> &#125; <span class="comment">// 接口成员默认就是“open”的</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span></span>() : Rectangle(), Polygon &#123;</span><br><span class="line">    <span class="comment">// 编译器要求覆盖 draw()：</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>&lt;Rectangle&gt;.draw() <span class="comment">// 调用 Rectangle.draw()</span></span><br><span class="line">        <span class="keyword">super</span>&lt;Polygon&gt;.draw() <span class="comment">// 调用 Polygon.draw()</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="类型系统"><a href="#类型系统" class="headerlink" title="类型系统"></a>类型系统</h4><p>既然聊到了继承那么我们就说一下kotlin中的类型系统</p>
+<ul>
+<li>首先kotlin中也存在java中的Object类型，即是所有类型的父类，这个类型在Kotlin中是Any，不论Int，Long还是我们自己定义的类都会默认继承自Any。</li>
+<li>Kotlin中不光有所有类的父类，同样有所有类型的子类，Nothing类型，这个类型是在一个方法中发生异常时系统为方法返回的对象的类型</li>
+<li>Kotlin中可空类型为非可控类型的父类，也就说Any是Any?的子类</li>
+<li>null为所有可空类型的子类，也就是说可空类型至少有两个子类，一个是null，一个是对应的非可空类型。</li>
+</ul>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>kotlin中同样有abstract关键字，用法基本与java相同，唯一需要说明的是abstract修饰的类默认就是open的不需要额外再添加open</p>
+<hr>
+<p>Kotlin类的基本信息就先介绍到这，将来会陆续整理Kotlin中其他的部分，喜欢的朋友可以关注我的公众号，会经常发布一些技术文档，扫描下方二维码关注欧。</p>
+<p><img src="https://zj8331182.github.io/image/qrcode_for_gh_fc9f7b133c7f_430.jpg" alt="二维码"></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/09/16/Kotlin使用记录-基础篇二/" data-toggle="tooltip" data-placement="top" title="Kotlin 使用记录-基础篇二">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/09/13/Kotlin使用记录-基础篇一/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-基本篇一">Next post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                          <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/2019/09/13/Kotlin使用记录-类篇一/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

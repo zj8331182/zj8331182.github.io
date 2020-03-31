@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          垃圾回收 - null
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/2019/06/14/垃圾回收-1/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                            
+                              <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                            
+                        </div>
+                        <h1>垃圾回收</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 小诸侯 on
+                            2019-06-14
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu1</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu2</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu5</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><h3 id="谈到Java语言，垃圾回收必然是一个绕不过去的题，那么垃圾回收是什么东西，用我自己话讲其实和现实中扔垃圾差不多，无非就是把没用的东西清理掉，那就从下面几个角度来了解一下，Java是如何“扔垃圾”的"><a href="#谈到Java语言，垃圾回收必然是一个绕不过去的题，那么垃圾回收是什么东西，用我自己话讲其实和现实中扔垃圾差不多，无非就是把没用的东西清理掉，那就从下面几个角度来了解一下，Java是如何“扔垃圾”的" class="headerlink" title="谈到Java语言，垃圾回收必然是一个绕不过去的题，那么垃圾回收是什么东西，用我自己话讲其实和现实中扔垃圾差不多，无非就是把没用的东西清理掉，那就从下面几个角度来了解一下，Java是如何“扔垃圾”的"></a>谈到Java语言，垃圾回收必然是一个绕不过去的题，那么垃圾回收是什么东西，用我自己话讲其实和现实中扔垃圾差不多，无非就是把没用的东西清理掉，那就从下面几个角度来了解一下，Java是如何“扔垃圾”的</h3></li>
+<li><h3 id="在Android中可能会有一些不同。我们都知道在5-0之前Android使用的是Dalvik虚拟机，5-0之后是ART，这两者在GC上有一定差异，我们后续的所有介绍，会区别两者来介绍"><a href="#在Android中可能会有一些不同。我们都知道在5-0之前Android使用的是Dalvik虚拟机，5-0之后是ART，这两者在GC上有一定差异，我们后续的所有介绍，会区别两者来介绍" class="headerlink" title="在Android中可能会有一些不同。我们都知道在5.0之前Android使用的是Dalvik虚拟机，5.0之后是ART，这两者在GC上有一定差异，我们后续的所有介绍，会区别两者来介绍"></a>在Android中可能会有一些不同。我们都知道在5.0之前Android使用的是Dalvik虚拟机，5.0之后是ART，这两者在GC上有一定差异，我们后续的所有介绍，会区别两者来介绍</h3></li>
+</ul>
+<h2 id="回收的时机：什么时候清理"><a href="#回收的时机：什么时候清理" class="headerlink" title="回收的时机：什么时候清理"></a>回收的时机：什么时候清理</h2><ol>
+<li><h3 id="内存到达伐值"><a href="#内存到达伐值" class="headerlink" title="内存到达伐值"></a>内存到达伐值</h3><p>生活中如果我们新买了一个s东西，但是拿回家后发现没地方放了，这时就需要清理没用的垃圾来腾出地方给新的东西，在JVM中同样，当新建对象导致内存到达伐值的时候就会触发GC。</p>
+</li>
+<li><h3 id="显示调用"><a href="#显示调用" class="headerlink" title="显示调用"></a>显示调用</h3><p>有的时候可能家里突然来了客人，或者某天你心情好，突然就想要收拾一下屋子，这个时候你就自发的清理了一下垃圾。在JVM中你可以调用‘System.GC.Collect();’来手动清理。（当然，这个一般是不建议手动调用的）</p>
+</li>
+<li><h3 id="出现一些突发情况"><a href="#出现一些突发情况" class="headerlink" title="出现一些突发情况"></a>出现一些突发情况</h3><p>突然有一天你被告知继承了七舅老爷的亿万遗产，要搬到独栋大别墅里，临走之前一定要整理一下，这种情况在JVM中也有存在，当然比喻的可能不恰当。</p>
+</li>
+<li><h3 id="Android中的时机"><a href="#Android中的时机" class="headerlink" title="Android中的时机"></a>Android中的时机</h3><ul>
+<li><p>Android中GC的时机一般为上边介绍的第一种，也就是在分配新的内存空间时发生，下面是我在自己搞的一张图，low了一点，不要在意细节。<br><img src="../image/gc/gc_1.jpg" alt="内存分配流程图" title="内存分配流程"></p>
+</li>
+<li><p>这里的soft引用可以理解为那些想扔又有点舍不得的东西。<br>   关于四种引用方式，请看文末的小知识点。</p>
+</li>
+<li><p>Dalvik和ART的这部分流程相同，大概的流程就是先扔完全没用的东西，不行就在找找地方，还不行就把上边说的那种鸡肋的也扔了，再挤挤地方，还不行就GG(OOM)。</p>
+</li>
+<li><p>提到这里就必须要提到四种GC了，他们分别是：</p>
+<ul>
+<li><p>GC_FOR_MALLOC: 表示是在堆上分配对象时内存不足触发的GC。</p>
+</li>
+<li><p>GC_CONCURRENT: 当我们应用程序的堆内存达到一定量，或者可以理解为快要满的时候，系统会自动触发GC操作来释放内存。</p>
+</li>
+<li><p>GC_EXPLICIT: 表示是应用程序调用System.gc、VMRuntime.gc接口或者收到SIGUSR1信号时触发的GC。</p>
+</li>
+<li><p>GC_BEFORE_OOM: 表示是在准备抛OOM异常之前进行的最后努力而触发的GC。</p>
+<p> 上图已经标出除GC_EXPLICIT外三种GC的触发时机</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="回收对象：-如何识别垃圾"><a href="#回收对象：-如何识别垃圾" class="headerlink" title="回收对象： 如何识别垃圾"></a>回收对象： 如何识别垃圾</h2><ol>
+<li><h3 id="什么样的对象为垃圾"><a href="#什么样的对象为垃圾" class="headerlink" title="什么样的对象为垃圾"></a>什么样的对象为垃圾</h3><p>在JVM的世界里，如果一个对象是存活的，他都会被其他对象引用，如果没有对象引用他，那么就说明他没有被使用，也就说明他已经死亡，是需要被清理的垃圾。</p>
+<p>如何找到垃圾，这个问题听上去很简单，按照上边说的只要找到没有被其他对象引用的对象就可以，那么该如何找呢？有以下几个方法。</p>
+</li>
+<li><h3 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h3><p>引用计数的实现非常简单，就是每一个对象都有一个计数器，当一个对象被另一个对象引用时，计数器加一，当引用失效时计数器减一，当计数器为0时则说明该对象没有被其他对象引用。</p>
+<p>引用计数法虽然看上去实现简单，但是有一个缺点，就是当两个对象相互引用，而没有其他对象引用他们时，这两个对象其实已经是无用对象了，但是他们的计数器不为0，所以永远不会被回收</p>
+<p><strong>该方式非JAVA采用的垃圾回收方式</strong></p>
+</li>
+<li><h3 id="可达性分析"><a href="#可达性分析" class="headerlink" title="可达性分析"></a>可达性分析</h3><p>由于上文说到的引用计数有其弊端，JVM采用了另外一种方式来标记对象是否存活，具体的方式如下<br><img src="../image/gc/gc_3.jpg" alt="可达性分析" title="可达性分析"></p>
+<p>这里的GC ROOT指的是一下几种对象</p>
+<ul>
+<li>JVM栈(栈帧数据中的本地变量表)中引用的对象。</li>
+<li>方法区中类静态属性引用的对象。</li>
+<li>方法区中常量引用的对象。</li>
+<li>Native 方法栈中JNI引用的对象。</li>
+</ul>
+<p>需要注意一点，即使在可达性分析算法中不可达对象，也并非是“非死不可”的，要真正宣告一个对象的死亡，至少需要经历两次标记的过程：</p>
+<p>如果一个对象在进行可达性分析之后发现没有与GC Roots相连的引用链，那么他将会第一次标记并且进行一次筛选，塞选的条件是是否复写finalize（）。当对象没有复写finalize()方法，或者finalize()方法已经被虚拟机调用过，虚拟机讲着两种情况都视为“没有必要执行finalize()方法”。</p>
+<p>如果这个对象被判定为有必要执行finalize()方法，那么这个对象会被加入一个“F-Queue”队列中，并在稍后由一个虚拟机建立的、优先级低的Finalize线程，去触发这个方法，但并不承诺会等待他运行结束。（非阻塞）</p>
+<p>finalize()方法是对象逃脱死亡厄运的最后一次机会，稍后的GC会对在“F-Queue”队列中的对象进行第二次小规模的标记；</p>
+<p>如果对象要在finalize()中拯救自己，只需要重新与引用链上的对象就行关联即可，那么在第二次标记时它将被移出“即将回收”的集合；<br>  <br>如果对象这个时候还是没有逃脱，那基本上他就真的被回收了。</p>
+</li>
+<li><h3 id="方法区的回收"><a href="#方法区的回收" class="headerlink" title="方法区的回收"></a>方法区的回收</h3><p>上面说到的可达性分析是用于对存储在堆中的对象，那么对于相对来说GC频率比较低的方法区主要回收的对象有以下两个方面</p>
+<ul>
+<li><p>废弃常量</p>
+<p>  该部分和上文中的Java堆的回收比较类似，就是回收没有被引用的常量，比如一个叫“abc”的字符串常量，如果没有任何一个String叫“abc”，则该常量就会被认定为废弃常量</p>
+</li>
+<li><p>无用的类</p>
+<p>  首先先要区别一下，类和对象，对象是类的实现，我们可以理解是对象是new出来的类，而类是我们写代码时的.class的对象。</p>
+<p>  要认定一个类是无用的需要以下三个条件，缺一不可，相对于对象和常量来说，更为苛刻</p>
+<ul>
+<li><p>该类的所有实例都已经被回收，也就是说Java堆中无该类的对象</p>
+</li>
+<li><p>该类的ClassLoader已经被回收</p>
+</li>
+<li><p>该类的.class对象没有被引用，任何地方没有通过反射访问该类</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="回收的方式"><a href="#回收的方式" class="headerlink" title="回收的方式"></a>回收的方式</h2><ol>
+<li><h3 id="几种常见的回收算法"><a href="#几种常见的回收算法" class="headerlink" title="几种常见的回收算法"></a>几种常见的回收算法</h3><ul>
+<li><p>标记-清除</p>
+<p> <img src="../image/gc/gc_4.png" alt="标记-清除" title="标记-清除"></p>
+<p> 如图，该算法的实现就是先遍历一遍所有对象，标记出需要回收的对象，再将所有需要回收的对象回收。</p>
+<p> 该算法的缺点是碎片化严重，当需要申请连续的大内存块时，明明有足够的空间，却因为不连续导致申请失败，进而触发多次GC</p>
+</li>
+<li><p>复制</p>
+<p> <img src="../image/gc/gc_5.png" alt="复制" title="复制"></p>
+<p> 如图，该算法是将区域分成两份，在区域1遍历，将不需回收的对象则依次复制到区域2里面，等到全部遍历完成之后将区域1全部清除</p>
+<p> 该算法的缺点同样明显，就是只有一半的空间被真正使用，并且如果一个对象一直存活的话，没回回收都需要进行一次复制，效率低下</p>
+</li>
+<li><p>标记-整理（标记-压缩）</p>
+<p><img src="../image/gc/gc_6.png" alt="标记-整理" title="标记-整理"></p>
+<p>如图，该算法是遍历所有内存，将不需回收的对象向前移动直到上一个不需回收的对象的尾部，最后将除不需回收的对象的部分全部回收</p>
+<p>该算法的缺点就是效率比较低，当大多数的对象是需要回收的时候，会进行多次移动对象的操作</p>
+</li>
+<li><p>分代收集</p>
+<p>上面的三种算法各自有各自的优劣，结合生活中，如果一个东西你每回收拾垃圾都把它保留下来了，那说明这个东西对你比较重要，它被清理的可能性也就比较小，那我们就可以把这一类东西放到一块，下回收拾的时候，就先不收拾这块，等到是在没地方再收拾它们。这就是分带整理，如下图。</p>
+<p><img src="../image/gc/gc_7.png" alt="分代收集" title="分代收集"></p>
+<p>如上图JVM Heap被分为两大部分（Young Gen 和 Old Memory）</p>
+<p>其中Old Memory就是上边所说的“每回收拾垃圾保留下来的东西”这部分对象中大部分是不需回收的对象，所以这一部分使用的算法是标记-整理算法，从而保证空间的利用率</p>
+<p>而Young Gen则是采用了比较特殊的复制算法来实现，这里将Young Gen分为三个区域，其中最大的叫Eden，新对象创建时都是在这个区域，另外两个叫Survivor，Eden：Survivor的比例一般为8:1。GC时，将Eden和其中一个Survivor中的对象使用复制的算法统一复制到另外的一个Survivor中，这个时候呢如果有很多的对象都不能回收，就可能会出现另一个Survivor不够放的情况，这时就会启用Old Memory来存放。</p>
+<p>为什么Young Gen要采用这种方式呢，原因是，新创建的对象的生命周期普遍较短，也就是挺不多一次GC，说有当有大量对象需要回收时，采用复制算法，它的第二个缺点“对象长时间存活，需要多次复制”的缺点就相应减少，而采用Eden和Survivor这种内存分配模式，有极大的提高了内存利用率，这样复制算法的第一个缺点也相应消除，所以，对于新生代这种生命周期相对短暂的对象，复制算法是最理想的方法</p>
+</li>
+<li><p>Android中的GC</p>
+<p>上面说到的是常规JVM中采用的模式，当然这里面没有深入介绍8大垃圾回收器，下面会介绍Dalvik和ART中的垃圾回收策略</p>
+<ul>
+<li><p>Dalvik</p>
+<p>提到Dalvik的垃圾回收就要说到CMS(Concurrent Mark Sweep),看到Mark Sweep大家应该也猜到了是标记-清除的算法，这里的标记-清除和我们上文介绍的不太一样，不一样的地方有，下图描述了Dalvik的GC过程</p>
+<p><img src="../image/gc/gc_8.jpg" alt="Dalvik" title="Dalvik"></p>
+<ol>
+<li><p>标记分为两步</p>
+<p>第一步先标记GC_ROOT，这个一步是需要Stop the world，也就是需要停掉除GC线程外的说有线程，以防止引用关系发生变化。</p>
+<p>第二步标记其他的对象，这个阶段是允许其他线程运行的，但是如果其他线程在这段时间使引用关系发生了变化，需要记录下来这些变化，在第二步标记完成后，需要再对记录下来的这些对象进行一次标记，这个过程是需要Stop the world 的，但是由于这部分的对象会比较少，所以不会stop太长时间</p>
+</li>
+<li><p>标记方式</p>
+<p>这里的部分清理指的是Dalvik中使用两个Bitmap来记录说有对象的状态一个，一个称为Live Bitmap，另一个称为Mark Bitmap。Live Bitmap用来标记上一次GC时被引用的对象，也就是没有被回收的对象，而Mark Bitmap用来标记当前GC有被引用的对象。有了这两个信息之后，我们就可以很容易地知道哪些对象是需要被回收的，即在Live Bitmap在标记为1，但是在Mark Bitmap中标记为0的对象。</p>
+</li>
+</ol>
+<p>通过上面对JVM的GC算法的介绍我们可以知道，Dalvik的GC存在内存碎片话的问题.</p>
+</li>
+<li><p>ART</p>
+<p>ART的GC相对比较复杂，可能要单独一篇文章才能讲的清，我们在这就先介绍一下ART的优点，之后再写一篇单独的ART的GC的文章</p>
+<ol>
+<li><p>ART运行时堆的划分和管理更细致，它分为Image Space、Zygote Space、Allocation Space和Large Object Space四个Space，再加上一个Allocation Stack。其中，Allocation Space和Large Object Space和Dalvik虚拟机的Zygote堆和Active堆作用是一样的，而其余的Space则有特别的作用，例如，Image Space的对象是永远不需要回收的。</p>
+</li>
+<li><p>ART运行时的每一个Space都有不同的回收策略，ART运行时根据这个特性提供了Mark Sweep、Partial Mark Sweep和Sticky Mark Sweep等三种回收力度不同的垃圾收集器。其中，Mark Sweep的垃圾回收力度最大，它会同时回收Zygote Space、Allocation Space和Large Object Space的垃圾，Partial Mark Sweep的垃圾回收力度居中，它只会同时回收Allocation Space和Large Object Space的垃圾，而Sticky Mark Sweep的垃圾回收力度最小，它只会回收Allocation Stack的垃圾，即上次GC以后分配出来的又不再使用了的对象。力度越大的垃圾收集器，回收垃圾时需要的时候也就越长。这样我们就可以在应用程序运行的过程中根据不同的情景使用不同的垃圾收集器，那就可以更有效地执行垃圾回收过程。</p>
+</li>
+<li><p>ART运行时充分地利用了设备的CPU多核特性，在并行GC的执行过程中，将每一个并发阶段的工作划分成多个子任务，然后提交给一个线程池执行，这样就可以更高效率地完成整个GC过程，避免长时间对应用程序造成停顿。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="小知识点"><a href="#小知识点" class="headerlink" title="小知识点"></a>小知识点</h2><ul>
+<li><h3 id="四种引用方式"><a href="#四种引用方式" class="headerlink" title="四种引用方式"></a>四种引用方式</h3><ul>
+<li><p>强引用（Strong Reference）：程序代码中普遍存在的，普通对象创建时默认是强引用关系，只要强引用还存在，垃圾收集器就不会收集这些对象。</p>
+</li>
+<li><p>软引用（Soft Reference）：用来描述一些还有用但非必需的对象，如果一个对象还存在着软引用关联，则虚拟机在发生OOM异常前，会将这些软引用对象进行二次回收。实现软引用的方式：SoftReference类。</p>
+</li>
+<li><p>弱引用（Weak Reference）：也是用来描述非必需对象，但强度较软引用更弱，在下一次GC时就会被回收。实现弱引用方式：WeakReference类。</p>
+</li>
+<li><p>虚引用（Phantom Reference）：虚引用也称幽灵应用或者幻影引用，是最弱的一种引用关系，一个对象是否是虚引用不会对其生存时间造成印象，也无法通过虚引用来获取对象实例。设置虚引用的唯一目的就是在该对象被GC时能够收到一个系统通知。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>部分内容摘至一下网站和书籍：</p>
+<p> <a href="https://www.cnblogs.com/purpleraintear/p/6046441.html" target="_blank" rel="noopener">https://www.cnblogs.com/purpleraintear/p/6046441.html</a><br> <a href="https://blog.csdn.net/luoshengyang/article/details/41338251" target="_blank" rel="noopener">https://blog.csdn.net/luoshengyang/article/details/41338251</a></p>
+<p> 《深入理解JVM虚拟机》</p>
+<hr>
+<p><strong><em>以上内容为个人理解，如有错误望及时指出</em></strong></p>
+<p>联系方式：<a href="mailto:1084904209@qq.com" target="_blank" rel="noopener">1084904209@qq.com</a></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/07/01/MPAndroidChart使用记录/" data-toggle="tooltip" data-placement="top" title="MPAndroidChart使用记录">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/2019/06/14/垃圾回收-1/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Kotlin使用记录-类篇 - null
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/2019/09/20/Kotlin使用记录-类篇三/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                            
+                              <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                            
+                        </div>
+                        <h1>Kotlin使用记录-类篇</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 小诸侯 on
+                            2019-09-20
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu1</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu2</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu5</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Kotlin中的一些特殊的类"><a href="#Kotlin中的一些特殊的类" class="headerlink" title="Kotlin中的一些特殊的类"></a>Kotlin中的一些特殊的类</h2><h3 id="数据类"><a href="#数据类" class="headerlink" title="数据类"></a>数据类</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
+
+<p>数据类就是在基本类的基础上，自动从<strong>主构造函数</strong>中声明的所有属性导出</p>
+<ol>
+<li>equals()/hashCode() 对；</li>
+<li>toString() 格式是 “User(name=John, age=42)”；</li>
+<li>componentN() 函数 按声明顺序对应于所有属性；</li>
+<li>copy() 函数（见下文）<br>这四个方法</li>
+</ol>
+<p>需要注意的地方有</p>
+<ul>
+<li>主构造参数至少要有一个参数</li>
+<li>主构造参数中不要有非成员属性的变量,也就说所有的参数都要带var/val</li>
+<li>类不能是open，abstract,private,inner的</li>
+<li>euqals(),hashCode(),toString()这三个方法如果，自身已经实现，或者父类中使用final修饰了这些方法，编译时系统不会重新为我们实现这些方法。</li>
+<li>copy()方法既不允许父类实现，也不允许数据类制剂实现</li>
+<li>componentN()方法不允许自身实现，如果父类实现的类型不冲突，且非final，是被允许的。</li>
+</ul>
+<p>componentN()中的N是指参数的个数，如果主构造函数有两个参数，那么系统会为我们生成两个component1(),component2()方法，这两个方法是用来对数据类进行解构。使用方法如下。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> jane = User(<span class="string">"Jane"</span>, <span class="number">35</span>)</span><br><span class="line"><span class="keyword">val</span> (name, age) = jane</span><br><span class="line">println(<span class="string">"<span class="variable">$name</span>, <span class="variable">$age</span> years of age"</span>) <span class="comment">// 输出 "Jane, 35 years of age"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="密封类"><a href="#密封类" class="headerlink" title="密封类"></a>密封类</h3><p>密封类的定义是你只能在同一个文件中继承他，也就是说他的所有子类只存在他所在的文件中。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">Expr</span></span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Const</span></span>(<span class="keyword">val</span> number: <span class="built_in">Double</span>) : Expr()</span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Sum</span></span>(<span class="keyword">val</span> e1: Expr, <span class="keyword">val</span> e2: Expr) : Expr()</span><br><span class="line"><span class="keyword">object</span> NotANumber : Expr()</span><br></pre></td></tr></table></figure>
+
+<p>sealed关键字表示密封类，需要注意：</p>
+<ul>
+<li>一个密封类是自身抽象的，它不能直接实例化并可以有抽象（abstract）成员。</li>
+<li>密封类不允许有非-private 构造函数（其构造函数默认为 private）。</li>
+<li>密封类子类的子类可以放在任何位置，而无需在同一个文件中。</li>
+<li>使用密封类的关键好处在于使用 when 表达式 的时候，如果能够验证语句覆盖了所有情况，就不需要为该语句再添加一个 else 子句了</li>
+</ul>
+<h3 id="嵌套类"><a href="#嵌套类" class="headerlink" title="嵌套类"></a>嵌套类</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> bar: <span class="built_in">Int</span> = <span class="number">1</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Nested</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> demo = Outer.Nested().foo() <span class="comment">// == 2</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，Kotlin中的嵌套类并不是内部类，不能使用外部类的属性，使用时和普通的类没有区别，唯一的不同就是使用时要使用 Outer.Nested()这种方式来创建对象而不是直接Nested()</p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><p>Kotlin的内部类要使用inner关键字来声明</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> bar: <span class="built_in">Int</span> = <span class="number">1</span></span><br><span class="line">    <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = bar</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> demo = Outer().Inner().foo() <span class="comment">// == 1</span></span><br></pre></td></tr></table></figure>
+
+<p>内部类是可以使用外部类的属性个方法，内部类的this默认指向内部类自己，可以使用带有限定符的this来指向外部类，比如上面的代码可以使用this@Outer来指向外部类</p>
+<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>Kotlin中的匿名内部类用法如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.addMouseListener(<span class="keyword">object</span> : MouseAdapter() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; …… &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; …… &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>和Java中的用法差不多，唯一区别就是语法有一点区别，不赘述了</p>
+<h3 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ColorFace</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">signal</span><span class="params">()</span></span>:ColorFace</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">Color</span></span>(<span class="keyword">val</span> rgb: <span class="built_in">Int</span>) :ColorFace&#123;</span><br><span class="line">    RED(<span class="number">0xFF0000</span>)&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">signal</span><span class="params">()</span></span> = GREEN</span><br><span class="line">    &#125;,</span><br><span class="line">    GREEN(<span class="number">0x00FF00</span>)&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">signal</span><span class="params">()</span></span> = GREEN</span><br><span class="line">    &#125;,</span><br><span class="line">    BLUE(<span class="number">0x0000FF</span>)&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">signal</span><span class="params">()</span></span> = GREEN</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由上面的代码我们可以知道，kotlin中的枚举与java一样可以有属性也可以有方法，并且可以实现接口，不过写法确实是比方便一些。</p>
+<p>Kotlin 中的枚举类也有合成方法允许列出定义的枚举常量以及通过名称获取枚举常量。这些方法的签名如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EnumClass.valueOf(value: String): EnumClass</span><br><span class="line">EnumClass.values(): Array&lt;EnumClass&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果指定的名称与类中定义的任何枚举常量均不匹配，valueOf() 方法将抛出 IllegalArgumentException 异常</p>
+<p>每个枚举常量都具有在枚举类声明中获取其名称与位置的属性：</p>
+<p>val name: String<br>val ordinal: Int</p>
+<p>枚举常量还实现了 Comparable 接口， 其中自然顺序是它们在枚举类中定义的顺序。</p>
+<p>可以使用 enumValues&lt;T&gt;() 与 enumValueOf&lt;T&gt;() 函数以泛型的方式访问枚举类中的常量,结合上面的代码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(enumValues&lt;Color&gt;().joinToString &#123; it.name &#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>kotlin中的对象关键字object有两种用处分别是对象表达式和对象声明</p>
+<h4 id="对象表达式"><a href="#对象表达式" class="headerlink" title="对象表达式"></a>对象表达式</h4><p>上面讲匿名内部时已经介绍过其用法值得注意的是如果匿名类的父类的构造函数是有参的必须要提供对应的参数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>(x: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="keyword">val</span> y: <span class="built_in">Int</span> = x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">B</span> </span>&#123; <span class="comment">/*……*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> ab: A = <span class="keyword">object</span> : A(<span class="number">1</span>), B &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> y = <span class="number">15</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然我们也可以使用一个无父类的对象表达式，他会继承自Any</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> adHoc = <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> x: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">var</span> y: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里需要注意的一点是，匿名对象可以用作只在本地和私有作用域中声明的类型。如果你使用匿名对象作为公有函数的返回类型或者用作公有属性的类型，那么该函数或属性的实际类型会是匿名对象声明的超类型，如果你没有声明任何超类型，就会是 Any。在匿名对象中添加的成员将无法访问。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 私有函数，所以其返回类型是匿名对象类型</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x: String = <span class="string">"x"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公有函数，所以其返回类型是 Any</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">publicFoo</span><span class="params">()</span></span> = <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x: String = <span class="string">"x"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x1 = foo().x        <span class="comment">// 没问题</span></span><br><span class="line">        <span class="keyword">val</span> x2 = publicFoo().x  <span class="comment">// 错误：未能解析的引用“x”</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个也很好理解因为匿名的内部类对其他的外部类而言类型是不可见</p>
+<h4 id="对象声明"><a href="#对象声明" class="headerlink" title="对象声明"></a>对象声明</h4><p>object同样可以用来声明类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> C</span><br></pre></td></tr></table></figure>
+
+<p>他的作用就剩声明一个单例，我们看一下他生成的java代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> C INSTANCE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        C c = <span class="keyword">new</span> C();</span><br><span class="line">        INSTANCE = c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可见就是一个饱汉式的单例模式，我们使用时也无需java中的getInstance，直接使用即可</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataProviderManager.registerDataProvider(……)</span><br></pre></td></tr></table></figure>
+
+<p>注意对象声明不能作用于内部类中</p>
+<h4 id="伴生对象"><a href="#伴生对象" class="headerlink" title="伴生对象"></a>伴生对象</h4><p>上面我们说到对象声明不能作用于内部类中，那如果我们的刚好有需求想实现一个单例内部类呢？<br>这时就需要伴生对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> Factory &#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span>: MyClass = MyClass()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样伴生对象的名称也可省略，系统会为其命名为Companion</p>
+<h4 id="初始化时间"><a href="#初始化时间" class="headerlink" title="初始化时间"></a>初始化时间</h4><ul>
+<li>对象表达式是在使用他们的地方立即执行（及初始化）的；</li>
+<li>对象声明是在第一次被访问到时延迟初始化的；</li>
+<li>伴生对象的初始化是在相应的类被加载（解析）时，与 Java 静态初始化器的语义相匹配。</li>
+</ul>
+<h4 id="内联类"><a href="#内联类" class="headerlink" title="内联类"></a>内联类</h4><p>内联类的出现主要是用来处理，某些场景我们需要扩展原生类型已达到我们的需求，但是使用继承的方式会打破很多系统对原生类型的优化，进而导致性能的损耗。内联类的使用方式</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="class"><span class="keyword">class</span> <span class="title">Name</span></span>(<span class="keyword">val</span> s: String) &#123;</span><br><span class="line">    <span class="keyword">val</span> length: <span class="built_in">Int</span></span><br><span class="line">        <span class="keyword">get</span>() = s.length</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">greet</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"Hello, <span class="variable">$s</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> name = Name(<span class="string">"Kotlin"</span>)</span><br><span class="line">    name.greet() <span class="comment">// `greet` 方法会作为一个静态方法被调用</span></span><br><span class="line">    println(name.length) <span class="comment">// 属性的 get 方法会作为一个静态方法被调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然限制也是颇多</p>
+<ul>
+<li>不能包含init代码块</li>
+<li>不能使用附后字段，也就是说get和set方法只能是用简单的逻辑</li>
+<li>只能继承接口，且只能是final的</li>
+<li>Java 中不能调用使用内联类作为形参的函数</li>
+</ul>
+<p>在生成的代码中，Kotlin 编译器为每个内联类保留一个包装器。内联类的实例可以在运行时表示为包装器或者基础类型。这就类似于 Int 可以表示为原生类型 int 或者包装器 Integer。</p>
+<p>因为内联类既可以表示为基础类型有可以表示为包装器，引用相等（===）对于内联类而言毫无意义，因此这也是被禁止的。</p>
+<h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p>类型别名为现有类型提供替代名称。 如果类型名称太长，你可以另外引入较短的名称，并使用新的名称替代原类型名。这点有些类似于C中的defind。<br>为类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> NodeSet = Set&lt;Network.Node&gt;</span><br></pre></td></tr></table></figure>
+
+<p>为方法类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> Predicate&lt;T&gt; = (T) -&gt; <span class="built_in">Boolean</span></span><br></pre></td></tr></table></figure>
+
+<p>为内部类或嵌套类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">    <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typealias</span> AInner = A.Inner</span><br><span class="line"><span class="keyword">typealias</span> BInner = B.Inner</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Kotlin中的特殊的类就先介绍到这，将来会陆续整理Kotlin中其他的部分，喜欢的朋友可以关注我的公众号，会经常发布一些技术文档，扫描下方二维码关注欧。</p>
+<p><img src="https://zj8331182.github.io/image/qrcode_for_gh_fc9f7b133c7f_430.jpg" alt="二维码"></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/09/23/Kotlin使用记录-类篇四/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-类篇">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/09/19/Kotlin使用记录-类篇二/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-类篇二">Next post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                          <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/2019/09/20/Kotlin使用记录-类篇三/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

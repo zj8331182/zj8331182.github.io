@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          MPAndroidChart使用记录 - null
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/2019/07/01/MPAndroidChart使用记录/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                            
+                              <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                            
+                        </div>
+                        <h1>MPAndroidChart使用记录</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 小诸侯 on
+                            2019-07-01
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu1</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu2</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu5</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>MPAndroidChart作为Android图表库中绝对霸主地位级别的开源库，是非常值得我研究一下的，正好近期在做一款App，当中的部分数据线以及图标使用到了这个库，就借此机会写一篇这个库的文章</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>这一部分MPAndroidChart本身已经有十分详细的说明文档以及sample，但是都是英文的，这里就写一些自己开发过程中的一些小tips</p>
+<h3 id="1-折线图-LineChart"><a href="#1-折线图-LineChart" class="headerlink" title="1. 折线图(LineChart)"></a>1. 折线图(LineChart)</h3><h4 id="1-1-常用API"><a href="#1-1-常用API" class="headerlink" title="1.1 常用API"></a>1.1 常用API</h4><figure class="highlight plain"><figcaption><span>设置是否可点击，是所有点击相关开关的前提，如果设置为false其他点击相关的开关无效</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```setDragEnabled()``` 设置是否可以滑动</span><br><span class="line"></span><br><span class="line">```setDragOffsetX()``` 设置X轴可划出边界的距离</span><br><span class="line"></span><br><span class="line">```setDragOffsetY()``` 设置Y轴可划出边界的距离</span><br><span class="line"></span><br><span class="line">```setScaleEnable()``` 设置是否可通过双指放大缩小</span><br><span class="line"></span><br><span class="line">```setPinchZoom``` 设置XY放大缩小是否联动</span><br><span class="line"></span><br><span class="line">```setAutoScaleMinMaxEnabled()``` 这个没太弄明白，如果添加完数据没有调用```notifyDataSetChanged()```而直接刷新了，就算这个设置为true，也没有自动缩放的效果的，但是要是调用了```notifyDataSetChanged()```,就算设置为false依然会制动缩放，搞不懂 &gt;。&lt;手动滑稽</span><br><span class="line"></span><br><span class="line">```setDrawBorders()``` 设置图标的边框是否显示</span><br><span class="line"></span><br><span class="line">```setDrawGridBackground``` 设置是否显示图标中的对齐十字线</span><br><span class="line"></span><br><span class="line">```setDrawMarkers()``` 设置是否显示自定义的Markers</span><br><span class="line"></span><br><span class="line">```getLegend()``` 获取指示器，可以对指示器进行一些设置</span><br><span class="line"></span><br><span class="line">![Legend](https://github.com/zj8331182/zj8331182.github.io/tree/master/image/mpchart/mpchartLegend.png &quot;Legend&quot;)</span><br><span class="line"></span><br><span class="line">```getDescription()``` 获取描述，可以对描述的属性进行设置</span><br><span class="line"></span><br><span class="line">![Description](https://github.com/zj8331182/zj8331182.github.io/tree/master/image/mpchart/mpchartDescription.png &quot;Description&quot;)</span><br><span class="line"></span><br><span class="line">```getAxisLeft()``` 获取左边的数值指示器，可对其进行设置</span><br><span class="line"></span><br><span class="line">```getAxisRight()``` 获取左边的数值指示器，可对其进行设置</span><br><span class="line"></span><br><span class="line">```getXAxis()``` 获取X轴的数值指示器，可对其进行设置，这里要吐槽一点，MPChart的默认X轴在上方，也是挺奇怪，但是好在修改起来比较方便</span><br><span class="line"></span><br><span class="line">```getLineData()```这个没什么说的，获取数据集，默认是空</span><br><span class="line"></span><br><span class="line">```notifyDataSetChanged()``` 不要被RecyclerView中的方法迷惑了，这个方法并不会刷新UI而是刷新内部状态的一个方法，所以要想相应新的数据集变动，需要先调用这个方法在调用```invalidate()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span>设置一页最多显示多少item</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```setVisibleX/YRange()```设置一页最多显示item的数值范围</span><br><span class="line"></span><br><span class="line">```setVisibleX/YRangeMinimum()```设置一页最少显示多少item</span><br><span class="line"></span><br><span class="line">#### 1.2 添加数据</span><br><span class="line"></span><br><span class="line">+ LineData</span><br><span class="line">  </span><br><span class="line">  每一个LineChart有一个LineData，这个类似于RecyclerView的Adapter。</span><br><span class="line">  </span><br><span class="line">  一个LineData中可以有若干个LineDataSet。</span><br><span class="line"></span><br><span class="line">  LineData中Api相对比较简单，和Value相关的都是设置节点的相关属性的。其他大都是对内部的所有DataSet进行操作的API，这里就不一一介绍了</span><br><span class="line"></span><br><span class="line">+ LineDataSet</span><br><span class="line">  </span><br><span class="line">  每个DataSet对应表格中的一条线，如上面图中有两条线的表格就有两个DataSet,由于DataSet代表了抽象的线，所以所有和线相关的设置项全在DataSet中，下面我们详细介绍一下</span><br><span class="line"></span><br><span class="line">  ```setMode()``` 设置线的表现方式，有```LINEAR,</span><br><span class="line">        STEPPED,</span><br><span class="line">        CUBIC_BEZIER,</span><br><span class="line">        HORIZONTAL_BEZIER```四种模式，</span><br><span class="line"></span><br><span class="line">    ```LINEAR``` 为默认的使用直线链接点的模式，</span><br><span class="line"></span><br><span class="line">    ```STEPPED```为只使用直线水平或者竖直的线的方式，如下</span><br><span class="line"></span><br><span class="line">    ![Stepped](https://github.com/zj8331182/zj8331182.github.io/tree/master/image/mpchart/mpchartStepped.png &quot;Stepped&quot;)</span><br><span class="line"></span><br><span class="line">    ```CUBIC_BEZIER``` 为使用三次贝塞尔曲线连接所有的点，该模式为沿竖直方向</span><br><span class="line"></span><br><span class="line">    ```HORIZONTAL_BEZIER``` 为沿水平方向使用贝塞尔曲线</span><br><span class="line"></span><br><span class="line">```setCubicIntensity()``` 如果模式中设置了```CUBIC_BEZIER```或者```HORIZONTAL_BEZIER```可是使用该方法设置贝塞尔算法的曲率，详情请自行查找贝塞尔算法，这里不展开</span><br><span class="line"></span><br><span class="line">```setCircl***()``` 和Circl相关的为设置节点中的点的相关属性</span><br><span class="line"></span><br><span class="line">```setValue***()``` 和Value相关的为设置节点中的文字的相关属性</span><br><span class="line"></span><br><span class="line">```enableDashedLine()```使用虚线来展示节点之间的连接线，注意该方法只在关闭硬件加速时生效，对应的关掉虚线的方法为```disableDashedLine</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```setCirclHole***()```和CirclHole相关的为设置节点中的点的内环的相关属性</span><br><span class="line"></span><br><span class="line">```setDrawFilled()``` 设置是否进行填充，默认为false，设置为true时的效果如```getLegend()```的图</span><br><span class="line"></span><br><span class="line">```setFillFormatter()``` 设置填充的Formatter，这个Formatter可以设置Fill的下边界是多少，比如设置为10则小于10的部分不会fill</span><br><span class="line"></span><br><span class="line">```setFill***()``` Fill相关的设置都是对Fill内容的设置</span><br><span class="line"></span><br><span class="line">```setLineWidth```设置链接节点的线的宽度</span><br><span class="line"></span><br><span class="line">```setDrawIcons```设置是否显示Icon，这里的Icon在Entry中添加</span><br><span class="line"></span><br><span class="line">```setHighlightEnabled()``` 设置高亮指示线是否可用</span><br><span class="line">如下图</span><br><span class="line">![Highlight](https://github.com/zj8331182/zj8331182.github.io/tree/master/image/mpchart/mpchartHighlight.png)</span><br><span class="line"></span><br><span class="line">```setHighlight***()```设置高亮线的相关属性</span><br><span class="line"></span><br><span class="line">```setDrawHorizontalHighlightIndicator()```设置是否显示水平指示线</span><br><span class="line"></span><br><span class="line">```setDrawVerticalHighlightIndicator()```设置是否显示竖直指示线</span><br><span class="line"></span><br><span class="line">```setDrawHighlightIndicator()```同时设置是否显示水平和竖直指示线</span><br><span class="line"></span><br><span class="line">+ Entry</span><br><span class="line"></span><br><span class="line">    Entry就是一个类似于Point的类，默认的构造参数就是一个X，Y的双参数的点</span><br><span class="line"></span><br><span class="line">    API的话有一个```setIcon()``` 用来设置图标。</span><br><span class="line"></span><br><span class="line">#### 1.3 自定义Render</span><br><span class="line"></span><br><span class="line">如果现有的API依然不能满足你的需求，MPChart提供了，可以自定义渲染器的方法，也就是将相当于你可以自定义如何绘制，MPChart提供很多Render，我这里就简单讲一下我用到的LineChartRender，其他的应该也是类似。</span><br><span class="line"></span><br><span class="line">首先自己编写一个Render继承自Render，然后就是编写你需要自定义的部分，重写对应的方法，比如我需要自定义Fill的部分，所以我需要重写```drawFilledPath()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>由于目前只使用到LineChar，就先暂时介绍LineChart，其他的图标后续再添加</p>
+<p>另外记录一个讲解MPChart的博客，讲的非常细致<br><a href="https://github.com/25sprout/ChartLib-Demo-Android" target="_blank" rel="noopener">https://github.com/25sprout/ChartLib-Demo-Android</a></p>
+<hr>
+<p><strong><em>以上内容为个人理解，如有错误望及时指出</em></strong></p>
+<p>联系方式：<a href="mailto:1084904209@qq.com" target="_blank" rel="noopener">1084904209@qq.com</a></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/09/13/Kotlin使用记录-基础篇一/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-基本篇一">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/06/14/垃圾回收-1/" data-toggle="tooltip" data-placement="top" title="垃圾回收">Next post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/2019/07/01/MPAndroidChart使用记录/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

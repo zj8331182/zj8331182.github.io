@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Kotlin使用记录-类篇二 - null
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/2019/09/19/Kotlin使用记录-类篇二/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                            
+                              <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                            
+                        </div>
+                        <h1>Kotlin使用记录-类篇二</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 小诸侯 on
+                            2019-09-19
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu1</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu2</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu5</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="属性与字段"><a href="#属性与字段" class="headerlink" title="属性与字段"></a>属性与字段</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><ul>
+<li><p>Kotlin中类的属性默认是final public的并且默认带有get和set方法，使用时只需要直接.调用就可以无需使用get和set方法</p>
+</li>
+<li><p>Kotlin中的属性在声明时必须要进行赋值，当然这其实是不可能的。有一下两种方法可以不用为属性赋值</p>
+<ol>
+<li><p>使用lateinit来标识属性，该属性表示要延后初始化行为</p>
+</li>
+<li><p>使用可空类型，并初始化属性为空</p>
+<p>那我们来讨论一下两种方法哪种更为合适呢？</p>
+</li>
+<li><p>使用lateinit时如果在使用该属性时并没有进行初始化操作会抛出一个特定异常，当然我们可以使用.isInitialized进行判断，但是这样会造成很多的冗余。</p>
+</li>
+<li><p>使用可空类型的方式，不会造成异常，但是需要我们之后使用属性时都需要考虑为空的情况。</p>
+<p>综上看来除非我们十分确定我们的属性的初始化行为在调用行为之前，我们可以使用lateinit，否则个人建议使用第二种方式</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="Get和Set"><a href="#Get和Set" class="headerlink" title="Get和Set"></a>Get和Set</h3><h4 id="自定义get和set"><a href="#自定义get和set" class="headerlink" title="自定义get和set"></a>自定义get和set</h4><p>有的时候我们需要在get和set中添加一些我们自己的代码（当然这点个人觉得最好不要加逻辑到get和set中）。这时需要我们自定义get和set。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stringRepresentation: String</span><br><span class="line">    <span class="keyword">get</span>() = <span class="keyword">this</span>.toString()</span><br><span class="line">    <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        setDataFromString(value) <span class="comment">// 解析字符串并赋值给其他属性</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>同时我们可以通过get函数来推断出属性的类型，进而省略属性的类型声明</p>
+</li>
+<li><p>我们同样可以修改get和set方法的可见性，只需要在get或set前面加入可见性声明，同样可以为get和set添加注解。</p>
+</li>
+</ul>
+<h4 id="幕后字段"><a href="#幕后字段" class="headerlink" title="幕后字段"></a>幕后字段</h4><p>kotlin为我们提供了幕后字段field以方便我们重写get和set方法</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span> <span class="comment">// 注意：这个初始器直接为幕后字段赋值</span></span><br><span class="line">    <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        <span class="keyword">if</span> (value &gt;= <span class="number">0</span>) field = value</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码想必大家一看就懂我就不多哔哔了，幕后字段只能在set中使用</p>
+<h2 id="可见性修饰符"><a href="#可见性修饰符" class="headerlink" title="可见性修饰符"></a>可见性修饰符</h2><p>Kotlin中的可见性修饰符包括private， protected， internal， public</p>
+<ul>
+<li><p>其中public为默认的可见性修饰符</p>
+</li>
+<li><p>protected不能用作顶层成名，即顶层变量和类</p>
+</li>
+<li><p>internal为模块内可见，模块的概念是编译在一起的一套 Kotlin 文件包括：</p>
+<ol>
+<li>一个 IntelliJ IDEA 模块</li>
+<li>一个 Maven 项目</li>
+<li>一个 Gradle 源集（例外是 test 源集可以访问 main 的 internal 声明）</li>
+<li>一次 &lt;kotlinc&gt; Ant 任务执行所编译的一套文件</li>
+</ol>
+</li>
+</ul>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h3 id="泛型基础"><a href="#泛型基础" class="headerlink" title="泛型基础"></a>泛型基础</h3><p>kotlin与java一样可以使用泛型进行开发<br>基本使用方法与java类似</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>&lt;<span class="type">T</span>&gt;</span>(t: T) &#123;</span><br><span class="line">    <span class="keyword">var</span> value = t</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在讲泛型之前我们要先明确几个概念</p>
+<ul>
+<li>型变：这个概念就是java中通配符的概念，java的泛型是不型变，也就是说如果你传入的泛型是A，那么之后使用的时候泛型就只能是A，Ade父类或者A的子类不能代替A，比如你传入泛型为String，取的时候就只能是String，而不能是Object，虽然他看上去没有问题。所以java引入了通配符&lt;?&gt;</li>
+<li>协变：我们知道java通配符中有两种其中&lt;? extends Object&gt;表示可以接收Object的子类,如果按照继承链来看，这也就表示我们可接收的对象的上限为Object，这样的通配符称之为协变的</li>
+<li>逆变：反之&lt;? super String&gt;这种类型的通配符，它规定了类型的下限，表示只接收String的父类型，这种类型为逆变的。</li>
+<li>生产者：你只能从中读取的对象，也就是一个类，或者接口，他所有的方法都只返回值使用到泛型但是没有入参使用到泛型。那么我们称他是生产者。</li>
+<li>消费者：与上面相反，你只能写入的对象，也就是只有入参使用到泛型的类或接口我们称为消费者。</li>
+<li>我们都知道在java上我们建议使用PECS,即生产者使用协变的通配符，消费者使用逆变的通配符。</li>
+</ul>
+<p>基于以上的知识我们开始介绍kotlin的泛型，kotlin中并没有通配符机制，但是他有俩个其他机制来达到更好的效果：声明处型变和类型投影</p>
+<h3 id="声明处型变"><a href="#声明处型变" class="headerlink" title="声明处型变"></a>声明处型变</h3><p>针对生产者我们可以使用out修饰符,这样我们可以使用泛型的子类型来代替泛型，因为只需要产出的地方，子类可以替换父类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Source</span>&lt;<span class="type">out T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">nextT</span><span class="params">()</span></span>: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">demo</span><span class="params">(strs: <span class="type">Source</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> objects: Source&lt;Any&gt; = strs <span class="comment">// 这个没问题，因为 T 是一个 out-参数</span></span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似的道理，消费者我们可以使用相反的修饰符in</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span>&lt;<span class="type">in T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">compareTo</span><span class="params">(other: <span class="type">T</span>)</span></span>: <span class="built_in">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">demo</span><span class="params">(x: <span class="type">Comparable</span>&lt;<span class="type">Number</span>&gt;)</span></span> &#123;</span><br><span class="line">    x.compareTo(<span class="number">1.0</span>) <span class="comment">// 1.0 拥有类型 Double，它是 Number 的子类型</span></span><br><span class="line">    <span class="comment">// 因此，我们可以将 x 赋给类型为 Comparable &lt;Double&gt; 的变量</span></span><br><span class="line">    <span class="keyword">val</span> y: Comparable&lt;<span class="built_in">Double</span>&gt; = x <span class="comment">// OK！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里说明一下使用&lt;T:Any&gt;的形式表示泛型的继承关系,即泛型的上界。<br>如果一个泛型有多个上界，可以使用where修饰符来表示</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">copyWhenGreater</span><span class="params">(list: <span class="type">List</span>&lt;<span class="type">T</span>&gt;, threshold: <span class="type">T</span>)</span></span>: List&lt;String&gt;</span><br><span class="line">    <span class="keyword">where</span> T : CharSequence,</span><br><span class="line">          T : Comparable&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> list.filter &#123; it &gt; threshold &#125;.map &#123; it.toString() &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同一个类或接口有多个泛型时使用,分割,例如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Function</span> &lt;<span class="type">in T, out U</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类型投影"><a href="#类型投影" class="headerlink" title="类型投影"></a>类型投影</h3><p>上面讲的声明处型变是在声明时表明我们的泛型类型，而类型投影则是在使用时，我们看下面的例子</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Array</span>&lt;<span class="type">T</span>&gt;</span>(<span class="keyword">val</span> size: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(index: <span class="type">Int</span>)</span></span>: T &#123; …… &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">set</span><span class="params">(index: <span class="type">Int</span>, value: <span class="type">T</span>)</span></span> &#123; …… &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">copy</span><span class="params">(from: <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;, to: <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;)</span></span> &#123;</span><br><span class="line">    assert(from.size == to.size)</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> from.indices)</span><br><span class="line">        to[i] = from[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个copy数组的方法，from和to都使用的是Any作为泛型，通过上面的学习我们知道，由于Array既不是生产者也不是消费者，我们没有办法使用声明时型变，也就是说我们的两个入参都必须是Any类型，这显然不是我们想要的。</p>
+<p>那么如果我们让from传入的类型是Any的子类，而非只能是Any，要如何做呢，这时就需要使用类型投影，修饰符为out，表示接受的参数类型的上限</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">copy</span><span class="params">(from: <span class="type">Array</span>&lt;<span class="type">out</span> <span class="type">Any</span>&gt;, to: <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;)</span></span> &#123; …… &#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样修饰符in表示接受参数类型的下限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun fill(dest: Array&lt;in String&gt;, value: String) &#123; …… &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="星参数"><a href="#星参数" class="headerlink" title="星参数"></a>星参数</h3><p>星参数是在使用时清楚泛型的具体类型</p>
+<ul>
+<li>对于 Foo &lt;out T : TUpper&gt;，其中 T 是一个具有上界 TUpper 的协变类型参数，Foo &lt;*&gt; 等价于 Foo &lt;out TUpper&gt;。 这意味着当 T 未知时，你可以安全地从 Foo &lt;*&gt; 读取 TUpper 的值。</li>
+<li>对于 Foo &lt;in T&gt;，其中 T 是一个逆变类型参数，Foo &lt;<em>&gt; 等价于 Foo &lt;in Nothing&gt;。 这意味着当 T 未知时，没有什么可以以安全的方式写入 Foo &lt;\</em>&gt;。</li>
+<li>对于 Foo &lt;T : TUpper&gt;，其中 T 是一个具有上界 TUpper 的不型变类型参数，Foo&lt;*&gt; 对于读取值时等价于 Foo&lt;out TUpper&gt; 而对于写值时等价于 Foo&lt;in Nothing&gt;。</li>
+</ul>
+<h3 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h3><p>不只是类和接口，函数同样可以使用泛型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">singletonList</span><span class="params">(item: <span class="type">T</span>)</span></span>: List&lt;T&gt; &#123;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">basicToString</span><span class="params">()</span></span>: String &#123;  <span class="comment">// 扩展函数</span></span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型擦除"><a href="#泛型擦除" class="headerlink" title="泛型擦除"></a>泛型擦除</h3><p>Kotlin中的泛型都是在编译时进行安全性校验，编译结束欧都会擦除为&lt;*&gt;即无上下限的泛型，所以编译器禁止运行时用is进行类型校验</p>
+<hr>
+<p>本章就先介绍到这，将来会陆续整理Kotlin中其他的部分，喜欢的朋友可以关注我的公众号，会经常发布一些技术文档，扫描下方二维码关注欧。</p>
+<p><img src="https://zj8331182.github.io/image/qrcode_for_gh_fc9f7b133c7f_430.jpg" alt="二维码"></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/09/20/Kotlin使用记录-类篇三/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-类篇">&larr; Previous post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/09/19/Flutter桌面版应用开发/" data-toggle="tooltip" data-placement="top" title="Flutter桌面版应用开发">Next post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                          <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/2019/09/19/Kotlin使用记录-类篇二/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

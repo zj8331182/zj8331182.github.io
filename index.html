@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+				
+                    <div class="site-heading" style="padding:40px">
+                        <h1>小诸侯的博客</h1>
+                        <!--<hr class="small">-->
+                        <span class="subheading"></span>
+                    </div>
+                
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu1</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu2</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu3</a>
+                           
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+           
+                            <a href="#">menu5</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+	        
+                <!-- Main Content -->
+
+
+
+
+<div class="w3-row-padding">
+	<a href="/2020/03/30/Kotlin使用记录-方法篇一/">
+        <h2 class="post-title">
+            Kotlin使用记录-方法篇一
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2020/03/30/Kotlin使用记录-方法篇一/">
+
+        <div class="post-content-preview">
+            参数
+允许使用默认参数，即在声明参数时可以为形参赋值，当对应的形参没有被赋值时，实参等于声明形参时的赋值,下面可以看一下kotlin是如何实现的默认参数
+123fun checkParameter(a: Int = 1, b: String = "a", c: Int) &#123;    val aa = a + 1&#125;
+
+
+
+
+  123456789101112131415.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2020-03-30
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/09/23/Kotlin使用记录-类篇四/">
+        <h2 class="post-title">
+            Kotlin使用记录-类篇
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/09/23/Kotlin使用记录-类篇四/">
+
+        <div class="post-content-preview">
+            导读本篇是Kotlin类使用指南的最后一篇，本篇主要介绍的是Kotlin类中的高级用法。
+扩展Kotlin 能够扩展一个类的新功能而无需继承该类或者使用像装饰者这样的设计模式。 这通过叫做 扩展 的特殊声明完成。
+声明一个扩展函数，我们需要用一个 接收者类型 也就是被扩展的类型来作为他的前缀。
+12345fun MutableList&lt;Int&gt;.swap(index1: I.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-09-23
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/09/20/Kotlin使用记录-类篇三/">
+        <h2 class="post-title">
+            Kotlin使用记录-类篇
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/09/20/Kotlin使用记录-类篇三/">
+
+        <div class="post-content-preview">
+            Kotlin中的一些特殊的类数据类1data class User(val name: String, val age: Int)
+
+数据类就是在基本类的基础上，自动从主构造函数中声明的所有属性导出
+
+equals()/hashCode() 对；
+toString() 格式是 “User(name=John, age=42)”；
+componentN() 函数 按声明顺序对应于所有属性.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-09-20
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/09/19/Kotlin使用记录-类篇二/">
+        <h2 class="post-title">
+            Kotlin使用记录-类篇二
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/09/19/Kotlin使用记录-类篇二/">
+
+        <div class="post-content-preview">
+            属性与字段基础
+Kotlin中类的属性默认是final public的并且默认带有get和set方法，使用时只需要直接.调用就可以无需使用get和set方法
+
+Kotlin中的属性在声明时必须要进行赋值，当然这其实是不可能的。有一下两种方法可以不用为属性赋值
+
+使用lateinit来标识属性，该属性表示要延后初始化行为
+
+使用可空类型，并初始化属性为空
+那我们来讨论一下两种方法哪种更为.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-09-19
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/09/19/Flutter桌面版应用开发/">
+        <h2 class="post-title">
+            Flutter桌面版应用开发
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/09/19/Flutter桌面版应用开发/">
+
+        <div class="post-content-preview">
+            前言Flutter目前的对外bate版是1.9，在1.9中添加了对Web引用的支持，又进一步的扩大了Flutter的生态。那么大前端就只剩PC端的了，这点问题其实Google早就已经开始搞了，但是还是没有正式release，在master分支上已经可以使用，那么我们接下来就分享一下如何开发desktop应用
+正文准备工作首先我们要将我们的flutter的分支切换到master命令是
+1.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-09-19
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/09/16/Kotlin使用记录-基础篇二/">
+        <h2 class="post-title">
+            Kotlin 使用记录-基础篇二
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/09/16/Kotlin使用记录-基础篇二/">
+
+        <div class="post-content-preview">
+            字符串
+Kotlin中的字符串String是不可变的
+
+Kotlin中String可以直接当作List使用，可以使用string[0]来获取第一位的字符，也可以使用
+1234val strs = "abc"for(s in strs)&#123;    print(s)&#125;
+
+Kotlin中可以使用””” “””包裹字符串，被包裹的部分不会进行任何转义
+
+Kotlin支持字符串.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-09-16
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/09/13/Kotlin使用记录-类篇一/">
+        <h2 class="post-title">
+            Kotlin使用记录-类篇一
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/09/13/Kotlin使用记录-类篇一/">
+
+        <div class="post-content-preview">
+            Kotlin中的类kotlin类的关键字一样是class一个最简单的类就是
+1class A
+
+那么我将从以下几个方向介绍java与kotlin走不同的地方
+构造函数Kotlin中构造函数有两个，分别为主构造函数,次构造函数
+主构造函数1class Person constructor(firstName: String) &#123; /*……*/ &#125;
+
+如果主构造函数没有.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-09-13
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/09/13/Kotlin使用记录-基础篇一/">
+        <h2 class="post-title">
+            Kotlin使用记录-基本篇一
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/09/13/Kotlin使用记录-基础篇一/">
+
+        <div class="post-content-preview">
+            前言2019年的Google开发者大会刚刚开完，作为早就被Google确认为官方开发语言的kotlin终于实现了超50%的开发使用量，可以说是可喜可贺。作为一名从java转移到kotlin的开发，这里就总结一下自己学习kotlin时一些心得。
+
+变量：首先kotin中变量的生命的格式如下
+1var/val 变量名：变量类型
+
+
+
+
+   基本的元素包含是变量还是常量，以及变量名。如果声.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-09-13
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/07/01/MPAndroidChart使用记录/">
+        <h2 class="post-title">
+            MPAndroidChart使用记录
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/07/01/MPAndroidChart使用记录/">
+
+        <div class="post-content-preview">
+            前言MPAndroidChart作为Android图表库中绝对霸主地位级别的开源库，是非常值得我研究一下的，正好近期在做一款App，当中的部分数据线以及图标使用到了这个库，就借此机会写一篇这个库的文章
+使用方法这一部分MPAndroidChart本身已经有十分详细的说明文档以及sample，但是都是英文的，这里就写一些自己开发过程中的一些小tips
+1. 折线图(LineChart)1.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-07-01
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+<div class="w3-row-padding">
+	<a href="/2019/06/14/垃圾回收-1/">
+        <h2 class="post-title">
+            垃圾回收
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+	</a>
+
+<div>
+
+    <a href="/2019/06/14/垃圾回收-1/">
+
+        <div class="post-content-preview">
+            前言
+谈到Java语言，垃圾回收必然是一个绕不过去的题，那么垃圾回收是什么东西，用我自己话讲其实和现实中扔垃圾差不多，无非就是把没用的东西清理掉，那就从下面几个角度来了解一下，Java是如何“扔垃圾”的
+在Android中可能会有一些不同。我们都知道在5.0之前Android使用的是Dalvik虚拟机，5.0之后是ART，这两者在GC上有一定差异，我们后续的所有介绍，会区别两者来介绍
+.........
+        </div>
+    </a>
+    
+        <p class="post-meta">
+            Posted by 小诸侯 on
+            2019-06-14
+        </p>
+    
+
+</div>
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    
+</ul>
+
+
+            
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+            </div>
+
+          <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">Tags</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/tags/#Flutter" title="Flutter" rel="1">Flutter</a>
+            
+        
+            
+            <a href="/tags/#Android" title="Android" rel="9">Android</a>
+            
+        
+            
+            <a href="/tags/#Kotlin" title="Kotlin" rel="7">Kotlin</a>
+            
+        
+            
+            <a href="/tags/#Java" title="Java" rel="2">Java</a>
+            
+        
+    </div>
+</section>
+
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">About me</a></h5>
+    <div class="short-about">
+
+        
+            <img id="avatar_pic" src="/img/avatar/logo.png">
+        
+
+        
+            <p>INNOVATION IS KING!</p>
+        
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            
+            
+            
+
+            
+
+            
+
+            
+                <li>
+                    <a target="_blank" href="https://github.com/kinggozhang">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
+            
+            
+            
+        </ul>
+    </div>
+</section>
+
+        <hr>
+    
+        
+  <h5>Recent posts
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/2020/03/30/Kotlin使用记录-方法篇一/">Kotlin使用记录-方法篇一</a>
+        </li>
+      
+        <li>
+          <a href="/2019/09/23/Kotlin使用记录-类篇四/">Kotlin使用记录-类篇</a>
+        </li>
+      
+        <li>
+          <a href="/2019/09/20/Kotlin使用记录-类篇三/">Kotlin使用记录-类篇</a>
+        </li>
+      
+        <li>
+          <a href="/2019/09/19/Kotlin使用记录-类篇二/">Kotlin使用记录-类篇二</a>
+        </li>
+      
+        <li>
+          <a href="/2019/09/19/Flutter桌面版应用开发/">Flutter桌面版应用开发</a>
+        </li>
+      
+    </ul>
+  </div>
+</h5>
+        <hr>
+    
+        
+    <h5>Achives</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<h5>Friends</h5>
+<ul class="list-inline">
+
+    
+        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+    
+</ul>
+
+
+        <hr>
+    
+</div>
+
+
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
