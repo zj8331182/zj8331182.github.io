@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Kotlin使用记录-集合篇 - null
+        
+    </title>
+
+    <link rel="canonical" href="https://zj8331182.github.io/2020/03/31/Kotlin使用记录-集合篇/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+ 
+    .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+    }
+
+    .carousel-caption h3 {
+      color: #fff !important;
+    }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row">
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                            
+                              <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                            
+                        </div>
+                        <h1>Kotlin使用记录-集合篇</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 小诸侯 on
+                            2020-03-31
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">小诸侯的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Homepage</a>
+                    </li>
+		    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>kotlin中集合的部分和java的差别还是比较大的，先看一下kotlin中集合的种类</p>
+<img src="/2020/03/31/Kotlin使用记录-集合篇/collections-diagram.png" title="collection">
+
+<ul>
+<li><p>List的默认实现是ArrayList</p>
+</li>
+<li><p>Set的默认实现是LinkedHashSet</p>
+</li>
+<li><p>Map的默认实现是LinkedHashMap</p>
+</li>
+</ul>
+<p>创建集合</p>
+<ul>
+<li><p>listOf<t>(),mutableListOf<t>()</t></t></p>
+</li>
+<li><p>setOf<t>(),mutableSetOf<t>()</t></t></p>
+</li>
+<li><p>mapOf<t>(key to value),mutableMapOf<t>(key to value)</t></t></p>
+</li>
+</ul>
+<p>也可以使用具体的类型的构造函数如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> linkedList = LinkedList&lt;String&gt;(listOf(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>))</span><br><span class="line"><span class="keyword">val</span> presizedSet = HashSet&lt;<span class="built_in">Int</span>&gt;(<span class="number">32</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用toList(),toSet()类型转换,需要注意的是这些方法使用的是浅拷贝</p>
+<h1 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h1><p>迭代器与java没啥大的区别，用法基本一致，我们看生成的java源码也确实就是使用java的迭代器。</p>
+<p>需要注意的是，kotlin中的map，filter都是使用迭代器来实现的，也就是说只要实现了迭代的类型都可以使用这些操作符</p>
+<h1 id="区间"><a href="#区间" class="headerlink" title="区间"></a>区间</h1><p>区间是kotlin自己特殊的东西</p>
+<p>区间相关的操作符：</p>
+<p>rangto()或者..来创建 常规的区间</p>
+<p>downto 表示逆序即 左大于右</p>
+<p>unit表示左闭右开的区间[x,y)</p>
+<p>step用来形容步长</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">4</span>) &#123; <span class="comment">// 等同于 1 &lt;= i &amp;&amp; i &lt;= 4</span></span><br><span class="line">        print(i)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (j <span class="keyword">in</span> <span class="number">4</span> downTo <span class="number">1</span>) print(j)</span><br></pre></td></tr></table></figure>
+
+<p>这里要特殊说一下的是区间并不是集合，而是一个类似集合的一个，我们可以看一下他的源码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">     <span class="keyword">boolean</span> var1 = <span class="keyword">false</span>;</span><br><span class="line">     System.out.print(i);</span><br><span class="line">     <span class="keyword">int</span> j = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">byte</span> var2 = <span class="number">1</span>; j &gt;= var2; --j) &#123;</span><br><span class="line">        <span class="keyword">boolean</span> var3 = <span class="keyword">false</span>;</span><br><span class="line">        System.out.print(j);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可见区间的实现是kotlin在编译时完成的转换，而且并没有使用到数组，也就说使用区间会比使用数组更节省内存</p>
+<p>当然我们也可以自己实现一个区间，需要实现CloseRange<t>和Iterable<t>这两个接口，那么对T类型的对象就可以使用区间相关的操作。</t></t></p>
+<p>由于区间需要实现Iterable接口，所以区间可以使用迭代中的操作符如map，filter</p>
+<h1 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h1><p>序列(sequence)是一个类似于Iterable的特殊数据结构，他与可迭代对象不同点在于，他的操作并不是在转换时发生的，而是在实际请求整个处理链的结果时，并且Iterable的每一步转换都是将这个集合执行后再进行下一步的转换，而序列时对每一个元素执行所有的转换后再进行下一个元素下图很好的解释了两者的区别</p>
+<p>list:</p>
+<img src="/2020/03/31/Kotlin使用记录-集合篇/list-processing.png" title="list">
+
+<p>sequence:</p>
+<img src="/2020/03/31/Kotlin使用记录-集合篇/sequence-processing.png" title="sequence">
+
+
+
+<p>创建一个序列的方法有</p>
+<ol>
+<li><p>使用sequenceOf(“one”, “two”, “three”, “four”)</p>
+</li>
+<li><p>使用asSequence()将Iterable对象转换成序列</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers = listOf(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>, <span class="string">"four"</span>)</span><br><span class="line"><span class="keyword">val</span> numbersSequence = numbers.asSequence()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用generateSequence()方法,<strong>需要的最后一个元素之后返回 <code>null</code></strong>,否则生成的序列为无限序列，不能使用count()方法</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> oddNumbers = generateSequence(<span class="number">1</span>) &#123; it + <span class="number">2</span> &#125;</span><br><span class="line"><span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用sequence组块与yield()方法</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> oddNumbers = sequence &#123;</span><br><span class="line">    yield(<span class="number">1</span>)</span><br><span class="line">    yieldAll(listOf(<span class="number">3</span>, <span class="number">5</span>))</span><br><span class="line">    yieldAll(generateSequence(<span class="number">7</span>) &#123; it + <span class="number">2</span> &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,.....</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>我们查看一下序列的源码实现可以发现，序列的实现是依赖于Iterable的，可以理解为使用装饰模式将Iterable接口进行了丰富，我们简单的举个例是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val lengthsSequence = wordsSequence.filter &#123; println(&quot;filter: $it&quot;); it.length &gt; 3 &#125;</span><br><span class="line">       .map &#123; println(&quot;length: $&#123;it.length&#125;&quot;); it.length &#125;</span><br><span class="line">       .take(4)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sequence lengthsSequence = SequencesKt.take(SequencesKt.map(SequencesKt.filter(wordsSequence, (Function1)null.INSTANCE), (Function1)null.INSTANCE), 4);</span><br></pre></td></tr></table></figure>
+
+<p>这里面的take函数的实现是：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Sequence<span class="type">&lt;T&gt;</span>.<span class="title">take</span><span class="params">(n: <span class="type">Int</span>)</span></span>: Sequence&lt;T&gt; &#123;</span><br><span class="line">    require(n &gt;= <span class="number">0</span>) &#123; <span class="string">"Requested element count <span class="variable">$n</span> is less than zero."</span> &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">when</span> &#123;</span><br><span class="line">        n == <span class="number">0</span> -&gt; emptySequence()</span><br><span class="line">        <span class="keyword">this</span> <span class="keyword">is</span> DropTakeSequence -&gt; <span class="keyword">this</span>.take(n)</span><br><span class="line">        <span class="keyword">else</span> -&gt; TakeSequence(<span class="keyword">this</span>, n)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可见最终使用的TakeSequence来实现take，TakeSequence的源码如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="class"><span class="keyword">class</span> <span class="title">TakeSequence</span>&lt;<span class="type">T</span>&gt;</span>(</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> sequence: Sequence&lt;T&gt;,</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> count: <span class="built_in">Int</span></span><br><span class="line">) : Sequence&lt;T&gt;, DropTakeSequence&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        require(count &gt;= <span class="number">0</span>) &#123; <span class="string">"count must be non-negative, but was <span class="variable">$count</span>."</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">drop</span><span class="params">(n: <span class="type">Int</span>)</span></span>: Sequence&lt;T&gt; = <span class="keyword">if</span> (n &gt;= count) emptySequence() <span class="keyword">else</span> SubSequence(sequence, n, count)</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">take</span><span class="params">(n: <span class="type">Int</span>)</span></span>: Sequence&lt;T&gt; = <span class="keyword">if</span> (n &gt;= count) <span class="keyword">this</span> <span class="keyword">else</span> TakeSequence(sequence, n)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">iterator</span><span class="params">()</span></span>: Iterator&lt;T&gt; = <span class="keyword">object</span> : Iterator&lt;T&gt; &#123;</span><br><span class="line">        <span class="keyword">var</span> left = count</span><br><span class="line">        <span class="keyword">val</span> iterator = sequence.iterator()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">next</span><span class="params">()</span></span>: T &#123;</span><br><span class="line">            <span class="keyword">if</span> (left == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">throw</span> NoSuchElementException()</span><br><span class="line">            left--</span><br><span class="line">            <span class="keyword">return</span> iterator.next()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">hasNext</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> left &gt; <span class="number">0</span> &amp;&amp; iterator.hasNext()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主要关注iterator()的实现，可以看到实现很简单就是使用了一个left来记录数量，到对应的数量之后就抛出异常，可见序列的实现是使用迭代器来进行转换，这也解释了为什么序列是对每一个元素执行所有的转换后再进行下一个元素</p>
+<h1 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h1><p>Kotlin为集合默认集成了很多的操作有以下几种</p>
+<ol>
+<li><p>转换</p>
+</li>
+<li><p>过滤</p>
+</li>
+<li><p>分组</p>
+</li>
+<li><p>加减</p>
+</li>
+<li><p>提取（单个元素，或者一个片段）</p>
+</li>
+<li><p>聚合</p>
+</li>
+<li><p>排序</p>
+</li>
+<li><p>添加，删除，更新</p>
+<p>这部分没有什么太好说，使用方法有点类似于RxJava</p>
+</li>
+</ol>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/03/30/Kotlin使用记录-方法篇一/" data-toggle="tooltip" data-placement="top" title="Kotlin使用记录-方法篇一">Next post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">Tags</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                          <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/zj8331182">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 小诸侯 2020 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zj8331182.github.io/2020/03/31/Kotlin使用记录-集合篇/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://zj8331182.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
